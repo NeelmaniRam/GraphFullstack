@@ -9,6 +9,10 @@ export const fetchGraph = async () => {
 };
 
 export const queryAPI = async (query) => {
-  const res = await axios.post(`${BACKEND_URL}/query`, { query });
-  return res.data;
+  const res = await fetch(`${BASE_URL}/query`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query }),
+  });
+  return res.json();
 };
