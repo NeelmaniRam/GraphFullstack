@@ -14,12 +14,12 @@ export default function ChatBox({ setGraph, setAnswer }) {
 
       // Update graph in App
       setGraph({
-        nodes: res.nodes || res.data?.nodes || [],
-        edges: res.edges || res.data?.edges || []
+        nodes: res.nodes || [],
+        edges: res.edges || []
       });
 
       // Update AI answer in App
-      setAnswer(res.answer || res.data?.answer || "");
+      setAnswer(res.answer || "");
 
     } catch (err) {
       console.error(err);

@@ -5,32 +5,26 @@ import { fetchGraph } from "./services/api";
 
 function App() {
   const [graph, setGraph] = useState({ nodes: [], edges: [] });
-  const [answer, setAnswer] = useState(""); // store latest AI answer
+  const [answer, setAnswer] = useState("");
 
-  // Initial fetch of graph
   useEffect(() => {
     fetchGraph().then(setGraph);
   }, []);
 
   return (
     <div className="app" style={{ display: "flex", gap: "20px" }}>
-      <div className="left" style={{ flex: 1 }}>
+      <div className="left">
         <h2>Graph View</h2>
         <GraphView nodes={graph.nodes} edges={graph.edges} />
       </div>
 
-      <div className="right" style={{ flex: 1 }}>
+      <div className="right">
         <h2>AI Query Interface</h2>
-        <ChatBox
-          setGraph={setGraph}   // pass setGraph to ChatBox
-          setAnswer={setAnswer} // pass setAnswer to ChatBox
-        />
-        {answer && (
-          <div style={{ marginTop: "20px" }}>
-            <strong>Answer:</strong>
-            <p>{answer}</p>
-          </div>
-        )}
+        <ChatBox setGraph={setGraph} setAnswer={setAnswer} />
+        <div style={{ marginTop: "20px" }}>
+          <strong>Answer:</strong>
+          <p>{answer}</p>
+        </div>
       </div>
     </div>
   );
